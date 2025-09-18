@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pip Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Pip Calculator</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="pip-calculator.html" class="active">Pip Calculator</a>
+      <a href="profit-loss-calculator.html">Profit/Loss</a>
+      <a href="position-size-calculator.html">Position Size</a>
+      <a href="currency-converter.html">Currency Converter</a>
+    </nav>
+  </header>
+
+  <main>
+    <label>Lot Size:</label>
+    <input type="number" id="lotSize" value="1">
+
+    <label>Pair Pip Value (USD):</label>
+    <input type="number" id="pipValue" value="10">
+
+    <label>Number of Pips:</label>
+    <input type="number" id="pips" value="50">
+
+    <button onclick="calculatePip()">Calculate</button>
+    <h2 id="result">Result: --</h2>
+  </main>
+
+  <script>
+    function calculatePip() {
+      let lot = parseFloat(document.getElementById("lotSize").value);
+      let pipValue = parseFloat(document.getElementById("pipValue").value);
+      let pips = parseFloat(document.getElementById("pips").value);
+
+      let result = lot * pipValue * pips;
+      document.getElementById("result").textContent = "Result: $" + result.toFixed(2);
+    }
+  </script>
+</body>
+</html>

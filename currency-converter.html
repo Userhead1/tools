@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Converter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Currency Converter</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="pip-calculator.html">Pip Calculator</a>
+      <a href="profit-loss-calculator.html">Profit/Loss Calculator</a>
+      <a href="position-size-calculator.html">Position Size Calculator</a>
+      <a href="currency-converter.html" class="active">Currency Converter</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="converter">
+      <label>Amount:</label>
+      <input type="number" id="amount" value="1">
+
+      <label>From:</label>
+      <select id="fromCurrency"></select>
+
+      <label>To:</label>
+      <select id="toCurrency"></select>
+
+      <button onclick="convertCurrency()">Convert</button>
+
+      <h2 id="result">Converted Amount: --</h2>
+    </section>
+  </main>
+
+  <script>
+    const apiKey = "cur_live_0Rnv7oiU9WytD39K62uoTeGA2MXnfcv5osffRvBt";
+    const fromCurrency = document.getElementById("fromCurrency");
+    const toCurrency = document.getElementById("toCurrency");
+    const amount = document.getElementById("amount");
+    const result = document.getElementById("result");
+
+    // Fetch currency list
+    async function loadCurrencies() {
+      try {
+        const res = await fetch(`https://api.currencyapi.com/v3/currencies?apikey=${apiKey}`);
+        const data = await res.json();
+        const currencies = Object.keys(data.data);
+
+        currencies.forEach(code => {
+          let option1 = document.createElement("option");
+          option1.value = code;
+          option1.textContent = code;
+          fromCurrency.appendChild(option1);
+
+          let option2 = document.createElement("option");
+          option2.value = code;
+          option2.textContent = code;
+          toCurrency.appendChild(option2);
+        });
+
+        fromCurrency.value = "USD";
+        toCurrency.value = "PKR";
+      } catch (error) {
+        console.error("Error loading currencies", error);
+      }
+    }
+
+    // Convert currency
+    async function convertCurrency() {
+      try {
+        const res = await fetch(`https://api.currencyapi.com/v3/latest?apikey=${apiKey}&base_currency=${fromCurrency.value}`);
+        const data = await res.json();
+        const rate = data.data[toCurrency.value].value;
+        const converted = (amount.value * rate).toFixed(2);
+        result.textContent = `Converted Amount: ${converted} ${toCurrency.value}`;
+      } catch (error) {
+        result.textContent = "Conversion failed. Try again.";
+        console.error("Error converting currency", error);
+      }
+    }
+
+    loadCurrencies();
+  </script>
+</body>
+</html>

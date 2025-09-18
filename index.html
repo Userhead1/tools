@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trading Tools</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .tool-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: 0.3s;
+    }
+    .tool-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .tool-card h3 {
+      margin-bottom: 10px;
+      color: #1a73e8;
+    }
+    .tool-card p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 15px;
+    }
+    .tool-card a {
+      display: inline-block;
+      padding: 10px 15px;
+      background: #1a73e8;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .tool-card a:hover {
+      background: #155ab6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Trading Tools Dashboard</h1>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="pip-calculator.html">Pip Calculator</a>
+      <a href="profit-loss-calculator.html">Profit/Loss</a>
+      <a href="position-size-calculator.html">Position Size</a>
+      <a href="currency-converter.html">Currency Converter</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Welcome</h2>
+    <p>Choose from the available trading tools below:</p>
+
+    <div class="tools-grid">
+      <div class="tool-card">
+        <h3>Pip Calculator</h3>
+        <p>Calculate the value of each pip in your trades.</p>
+        <a href="pip-calculator.html">Open Tool</a>
+      </div>
+      <div class="tool-card">
+        <h3>Profit/Loss Calculator</h3>
+        <p>Estimate profit or loss for your forex trades.</p>
+        <a href="profit-loss-calculator.html">Open Tool</a>
+      </div>
+      <div class="tool-card">
+        <h3>Position Size Calculator</h3>
+        <p>Find the ideal lot size based on risk and stop loss.</p>
+        <a href="position-size-calculator.html">Open Tool</a>
+      </div>
+      <div class="tool-card">
+        <h3>Currency Converter</h3>
+        <p>Convert live exchange rates with real-time data.</p>
+        <a href="currency-converter.html">Open Tool</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

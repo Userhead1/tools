@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profit/Loss Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Profit/Loss Calculator</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="pip-calculator.html">Pip Calculator</a>
+      <a href="profit-loss-calculator.html" class="active">Profit/Loss</a>
+      <a href="position-size-calculator.html">Position Size</a>
+      <a href="currency-converter.html">Currency Converter</a>
+    </nav>
+  </header>
+
+  <main>
+    <label>Buy Price:</label>
+    <input type="number" id="buyPrice" value="1.2000">
+
+    <label>Sell Price:</label>
+    <input type="number" id="sellPrice" value="1.2100">
+
+    <label>Lot Size:</label>
+    <input type="number" id="lotSize" value="1">
+
+    <label>Contract Size (e.g. 100,000):</label>
+    <input type="number" id="contractSize" value="100000">
+
+    <button onclick="calculatePL()">Calculate</button>
+    <h2 id="result">Result: --</h2>
+  </main>
+
+  <script>
+    function calculatePL() {
+      let buy = parseFloat(document.getElementById("buyPrice").value);
+      let sell = parseFloat(document.getElementById("sellPrice").value);
+      let lot = parseFloat(document.getElementById("lotSize").value);
+      let contract = parseFloat(document.getElementById("contractSize").value);
+
+      let result = (sell - buy) * lot * contract;
+      document.getElementById("result").textContent = "Result: $" + result.toFixed(2);
+    }
+  </script>
+</body>
+</html>

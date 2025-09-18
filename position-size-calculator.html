@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Position Size Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Position Size Calculator</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="pip-calculator.html">Pip Calculator</a>
+      <a href="profit-loss-calculator.html">Profit/Loss</a>
+      <a href="position-size-calculator.html" class="active">Position Size</a>
+      <a href="currency-converter.html">Currency Converter</a>
+    </nav>
+  </header>
+
+  <main>
+    <label>Account Balance ($):</label>
+    <input type="number" id="balance" value="1000">
+
+    <label>Risk %:</label>
+    <input type="number" id="riskPercent" value="2">
+
+    <label>Stop Loss (pips):</label>
+    <input type="number" id="stopLoss" value="50">
+
+    <label>Pip Value ($):</label>
+    <input type="number" id="pipValue" value="10">
+
+    <button onclick="calculatePosition()">Calculate</button>
+    <h2 id="result">Result: --</h2>
+  </main>
+
+  <script>
+    function calculatePosition() {
+      let balance = parseFloat(document.getElementById("balance").value);
+      let riskPercent = parseFloat(document.getElementById("riskPercent").value);
+      let stopLoss = parseFloat(document.getElementById("stopLoss").value);
+      let pipValue = parseFloat(document.getElementById("pipValue").value);
+
+      let riskAmount = (riskPercent / 100) * balance;
+      let positionSize = riskAmount / (stopLoss * pipValue);
+
+      document.getElementById("result").textContent = "Result: " + positionSize.toFixed(2) + " lots";
+    }
+  </script>
+</body>
+</html>
